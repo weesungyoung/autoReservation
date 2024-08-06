@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<head>
+  <title>회원가입</title>
+</head>
+<body>
+<div class="signup-container">
+  <h2>회원가입</h2>
+  <form action="/submit_signup" method="post">
+    <div style="margin-right: 10px">
+      <input type="text" name="memberId" placeholder="ID" required style="margin-right: 10px">
+      <input type="password" name="memberPw" placeholder="비밀번호" required style="margin-right: 10px">
+      <input type="text" name="name" placeholder="이름" required style="margin-right: 10px">
+      <input type="date" name="birthDate" placeholder="생년월일" required style="margin-right: 10px">
+      <input type="email" name="email" placeholder="이메일" required style="margin-right: 10px">
+    </div>
+    <hr>
+    <div style="margin-bottom: 5px">
+      <a href="/login">로그인</a>
+    </div>
+    <input type="submit" value="회원가입">
+  </form>
+</div>
+</body>
+</html>
