@@ -1,6 +1,7 @@
 package com.example.autoReservation.entity;
 
 import jakarta.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 public class Member {
@@ -9,9 +10,11 @@ public class Member {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String email;
-    private String password;
+    private String memberId;
+    private String memberPw;
     private String name;
+    private LocalDate birthDate;
+    private String email;
 
     public Member() {}
 
@@ -24,20 +27,20 @@ public class Member {
         this.id = id;
     }
 
-    public String getEmail() {
-        return email;
+    public String getMemberId() {
+        return memberId;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setMemberId(String memberId) {
+        this.memberId = memberId;
     }
 
-    public String getPassword() {
-        return password;
+    public String getMemberPw() {
+        return memberPw;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setMemberPw(String memberPw) {
+        this.memberPw = memberPw;
     }
 
     public String getName() {
@@ -46,5 +49,21 @@ public class Member {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
