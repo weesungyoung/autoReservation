@@ -1,11 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            background-color: #f4f4f4;
+            border-bottom: 1px solid #ccc;
+        }
+        .header .right {
+            display: flex;
+            align-items: center;
+        }
+        .button {
+            margin-left: 10px;
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        .ticket-card {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 10px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 </head>
 <body>
-test
-
+<div class="header">
+    <div class="right">
+        <a href="/logout" class="button">Logout</a>
+        <div th:if="${user.admin}">
+            <a href="/admin" class="button">Admin</a>
+        </div>
+    </div>
+</div>
+<div>
+    <h2>Available Tickets</h2>
+    <div class="ticket-card">
+        <h3>Event Name</h3>
+        <p>Date: August 15, 2024</p>
+        <p>Location: Venue Name</p>
+        <a href="#" class="button">Buy Ticket</a>
+    </div>
+</div>
 </body>
 </html>

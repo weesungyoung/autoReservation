@@ -1,24 +1,23 @@
 package com.example.autoReservation.entity;
 
 import jakarta.persistence.*;
-import java.time.LocalDate;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Entity
 public class Member {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "member_seq")
+    @SequenceGenerator(name = "member_seq", sequenceName = "MEMBER_SEQUENCE", allocationSize = 1)
     private Long id;
 
     private String memberId;
     private String memberPw;
-    private String name;
-    private LocalDate birthDate;
     private String email;
+    @Column(name = "admin", columnDefinition = "TINYINT(1) DEFAULT 0")
+    private boolean admin;
 
-    public Member() {}
-
-    // Getter 및 Setter 메서드
     public Long getId() {
         return id;
     }
@@ -40,23 +39,9 @@ public class Member {
     }
 
     public void setMemberPw(String memberPw) {
-        this.memberPw = memberPw;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public LocalDate getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(LocalDate birthDate) {
-        this.birthDate = birthDate;
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String hashedPassword = passwordEncoder.encode(memberPw);
+        this.memberPw = hashedPassword;
     }
 
     public String getEmail() {
@@ -65,5 +50,13 @@ public class Member {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public boolean isAdmin() { // 추가된 메소드
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) { // 추가된 메소드
+        this.admin = admin;
     }
 }
