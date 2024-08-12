@@ -41,7 +41,9 @@
 <body>
 <div class="header">
     <div class="right">
-        <a href="/logout" class="button">Logout</a>
+        <form action="/perform_logout" method="post" style="display:inline;">
+            <button type="submit" class="button">Logout</button>
+        </form>
         <div th:if="${user.admin}">
             <a href="/admin" class="button">Admin</a>
         </div>
@@ -49,10 +51,11 @@
 </div>
 <div>
     <h2>Available Tickets</h2>
-    <div class="ticket-card">
-        <h3>Event Name</h3>
-        <p>Date: August 15, 2024</p>
-        <p>Location: Venue Name</p>
+    <div th:each="ticket : ${tickets}" class="ticket-card">
+        <h3 th:text="${ticket.name}">Event Name</h3>
+        <p th:text="'Date: ' + ${ticket.startDate} + ' to ' + ${ticket.endDate}"></p>
+        <p th:text="'Capacity: ' + ${ticket.capacity}"></p>
+        <p th:text="'Price: ' + ${ticket.price}"></p>
         <a href="#" class="button">Buy Ticket</a>
     </div>
 </div>

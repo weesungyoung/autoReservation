@@ -30,6 +30,7 @@ public class SecurityConfig {
                 .csrf().disable()
                 .authorizeRequests(auth -> auth
                         .requestMatchers("/login", "/signup", "/submit_signup", "/signup_success", "/resources/**").permitAll()
+                        .requestMatchers("/admin").hasRole("ADMIN") // /admin에 대한 접근 제어
                         .anyRequest().authenticated())
                 .formLogin(form -> form
                         .loginPage("/login")
