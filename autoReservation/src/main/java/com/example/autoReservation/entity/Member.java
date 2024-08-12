@@ -15,6 +15,7 @@ public class Member {
     private String memberId;
     private String memberPw;
     private String email;
+
     @Column(name = "admin", columnDefinition = "TINYINT(1) DEFAULT 0")
     private boolean admin;
 
@@ -40,8 +41,7 @@ public class Member {
 
     public void setMemberPw(String memberPw) {
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String hashedPassword = passwordEncoder.encode(memberPw);
-        this.memberPw = hashedPassword;
+        this.memberPw = passwordEncoder.encode(memberPw); // 암호화된 비밀번호를 직접 할당
     }
 
     public String getEmail() {
@@ -52,11 +52,11 @@ public class Member {
         this.email = email;
     }
 
-    public boolean isAdmin() { // 추가된 메소드
+    public boolean isAdmin() {
         return admin;
     }
 
-    public void setAdmin(boolean admin) { // 추가된 메소드
+    public void setAdmin(boolean admin) {
         this.admin = admin;
     }
 }
